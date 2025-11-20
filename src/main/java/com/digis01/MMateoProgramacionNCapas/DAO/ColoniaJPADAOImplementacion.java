@@ -16,15 +16,13 @@ public class ColoniaJPADAOImplementacion implements IColoniaJPADAO {
     @Override
     public Result GetByIdMunicipio(int idMunicipio) {
         Result result = new Result();
-
         try {
 
             TypedQuery queryColonia = entityManager.createQuery("FROM ColoniaJPA c WHERE c.Municipio.IdMunicipio = :idMunicipio", ColoniaJPA.class).
                     setParameter("idMunicipio", idMunicipio);
             List<ColoniaJPA> colonias = queryColonia.getResultList();
-            
             result.object = colonias;
-            result.correct=true;
+            result.correct = true;
         } catch (Exception ex) {
             result.correct = false;
             result.errorMessage = ex.getLocalizedMessage();
@@ -32,6 +30,27 @@ public class ColoniaJPADAOImplementacion implements IColoniaJPADAO {
         }
 
         return result;
+    }
+
+    @Override
+    public Result GetByCodigoPostal(String codigoPostal) {
+
+        Result result = new Result();
+        try {
+
+            TypedQuery queryColonia = entityManager.createQuery("FROM ColoniaJPA c WHERE c.CodigoPostal = :codigoPostal", ColoniaJPA.class).
+                    setParameter("codigoPostal", codigoPostal);
+            List<ColoniaJPA> colonias = queryColonia.getResultList();
+            result.object = colonias;
+            result.correct = true;
+        } catch (Exception ex) {
+            result.correct = false;
+            result.errorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+        }
+
+        return result;
+
     }
 
 }

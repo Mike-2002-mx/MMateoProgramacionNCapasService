@@ -17,7 +17,6 @@ public class PaisJPADAOImplementacion implements IPaisJPADAO {
     @Override
     public Result GetAll() {
         Result result = new Result();
-
         try {
 
             TypedQuery queryPais = entityManager.createQuery("FROM PaisJPA", PaisJPA.class);

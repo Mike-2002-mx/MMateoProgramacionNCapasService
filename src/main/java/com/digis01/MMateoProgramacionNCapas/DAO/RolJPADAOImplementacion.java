@@ -17,11 +17,8 @@ public class RolJPADAOImplementacion implements IRolJPADAO {
 
     @Override
     public Result GetAll() {
-
         Result result = new Result();
-
         try {
-
             TypedQuery queryRol = entityManager.createQuery("FROM RolJPA", RolJPA.class);
             List<RolJPA> roles = queryRol.getResultList();
             result.object = roles;
